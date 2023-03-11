@@ -4,7 +4,12 @@
     "frontend": "cd ./frontend && npm run build && npm start",
     "frontend:dev": "cd ./frontend && npm run dev",
     "backend": "cd ./backend && npm start",
-    "backend:dev": "cd ./backend && npm run dev"
+    "backend:dev": "cd ./backend && npm run dev",
+    "all": "npm-run-all --parallel frontend backend",
+    "all:dev": "npm-run-all --parallel frontend:dev backend:dev"
   },
-  "author": "Joshua DeCristi"
+  "author": "Joshua DeCristi",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
 }
