@@ -2,7 +2,9 @@
   "name": "switch-to-zero-takehome",
   "scripts": {
     "frontend": "cd ./frontend && npm run build && npm start",
-    "frontend:dev": "cd ./frontend && npm run dev"
+    "frontend:dev": "cd ./frontend && npm run dev",
+    "backend": "cd ./backend && npm start",
+    "backend:dev": "cd ./backend && npm run dev"
   },
   "author": "Joshua DeCristi"
 }
