@@ -1,10 +1,26 @@
+/*
+  Overrides
+------------------------------------------
+*/
+
+//Theme Colors
 $primary: #fca800;
 $secondary: #5da694;
 $success: green;
 $danger: red;
-$light: #f8f6f0;
+$light: #fff;
 $dark: #333;
 $info: #999;
 
-//import boostrap
+//Body
+$body-bg: #eee;
+
+//Buttons
+$btn-border-radius: 1.5rem;
+$btn-padding-x: 2rem;
+
+/*
+  Bootstrap
+------------------------------------------
+*/
 @import "~bootstrap/scss/bootstrap";
