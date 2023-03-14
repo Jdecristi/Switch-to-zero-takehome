@@ -17,7 +17,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main>
-        <section style={{ padding: "150px 0 100px 0", backgroundColor: "var(--bs-secondary)", borderRadius: "0 0 40px 40px" }}>
+        <section style={{ padding: "100px 0 100px 0", backgroundColor: "var(--bs-secondary)", borderRadius: "0 0 40px 40px" }}>
           <Container>
             <Row className="my-5">
               <H1 color="white">Take your first steps towards carbon neutrality</H1>
