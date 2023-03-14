@@ -9,6 +9,8 @@ import H1 from "@/components/text/H1";
 import H2 from "@/components/text/H2";
 import P1 from "@/components/text/P1";
 
+import CarbonOffsetForm from "@/components/CarbonOffsetForm";
+
 export default function Home() {
   return (
     <>
@@ -67,7 +69,9 @@ export default function Home() {
             <Row>
               <H2>Let's find your best path towards carbon neutrality!</H2>
             </Row>
-            <Row></Row>
+            <Row>
+              <CarbonOffsetForm />
+            </Row>
           </Container>
         </section>
         <footer style={{ height: "100px" }} />
