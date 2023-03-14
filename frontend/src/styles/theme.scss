@@ -16,11 +16,16 @@ $info: #999;
 $body-bg: #eee;
 
 //Buttons
-$btn-border-radius: 1.5rem;
+$btn-border-radius: 1.5rem !important;
 $btn-padding-x: 2rem;
+$btn-color: white !important;
 
 /*
   Bootstrap
 ------------------------------------------
 */
 @import "~bootstrap/scss/bootstrap";
+
+.btn {
+  padding: var(--bs-btn-padding-y) 2rem;
+}
