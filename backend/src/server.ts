@@ -1,7 +1,10 @@
-import express from "express";
+import express, { Application } from "express";
+import calculateCarbonOffset from "./routes/CarbonOffsetCalculator";
 
-const APP = express();
+const APP: Application = express();
 const PORT = "3001";
+
+APP.use(calculateCarbonOffset);
 
 console.log("Starting server...");
 
