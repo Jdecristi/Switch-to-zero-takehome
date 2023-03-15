@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from "express";
 interface monthlyOffset {
-  month: number;
-  treePurchased: number;
-  currenttCarbonOffset: number;
-  totalTrees: number;
+  date: string;
+  currentOffset: number;
+  currentExpenses: number;
 }
 
 interface offsetData {
   totalCarbonOffset: number;
+  monthlyExpenses: number;
   totalExpenses: number;
   totalYears: number;
   totalTreesPurchased: number;
@@ -45,15 +45,17 @@ export const calculateCarbonOffset = (req: Request, res: Response) => {
     let totalExpenses = 0;
     let totalYears = 0;
     let plan: monthlyOffset[] = [];
+
     let yearlyExpenses = 0;
+    let year = new Date().getFullYear() - 2000;
 
     while (totalCarbonOffset < carbonFootprintInKG) {
       const maxTreePurchases = Math.floor((budget - yearlyExpenses) / treePrice);
-      const year: monthlyOffset[] = [];
+      const yearlyOffset: monthlyOffset[] = [];
 
       let treesPurchased = 1;
 
-      if (!maxTreePurchases) return { totalTreesPurchased, totalCarbonOffset, totalExpenses, totalYears, plan };
+      if (!maxTreePurchases) return { totalTreesPurchased, totalCarbonOffset, totalExpenses, totalYears, monthlyExpenses: yearlyExpenses / 12, plan };
 
       yearlyExpenses += (maxTreePurchases * treePrice) / 10;
       totalCarbonOffset += totalTreesPurchased * 28.5;
@@ -61,21 +63,29 @@ export const calculateCarbonOffset = (req: Request, res: Response) => {
       for (let i = 1; i <= 12; i++) {
         const treeMonth = Math.floor(12 / maxTreePurchases) * treesPurchased;
 
+        let currentExpenses = yearlyExpenses;
+
         if (treeMonth == i && treesPurchased <= maxTreePurchases) {
           treesPurchased++;
           totalCarbonOffset += 28.5;
           totalTreesPurchased++;
+          currentExpenses += treePrice;
         }
 
-        year.push({ month: i, treePurchased: treeMonth == i ? 1 : 0, currenttCarbonOffset: totalCarbonOffset, totalTrees: totalTreesPurchased });
+        yearlyOffset.push({
+          date: `${new Date().getMonth() + i - 1}/${year}`,
+          currentOffset: totalCarbonOffset,
+          currentExpenses,
+        });
       }
 
-      plan.push(...year);
+      year++;
+      plan.push(...yearlyOffset);
       totalYears += 1;
       totalExpenses += yearlyExpenses + maxTreePurchases * 120;
     }
 
-    return { totalTreesPurchased, totalCarbonOffset, totalExpenses, totalYears, plan };
+    return { totalCarbonOffset, monthlyExpenses: yearlyExpenses / 12, totalExpenses, totalYears, totalTreesPurchased, plan };
   };
 
   res.status(200).json({ data: calculateOffset(Number(footprint), Number(budget)) });
