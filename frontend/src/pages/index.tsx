@@ -19,7 +19,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main>
-        <section style={{ padding: "100px 0 100px 0", backgroundColor: "var(--bs-secondary)", borderRadius: "0 0 40px 40px" }}>
+        <section id="hero" style={{ padding: "100px 0 100px 0", backgroundColor: "var(--bs-secondary)", borderRadius: "0 0 40px 40px" }}>
           <Container>
             <Row className="my-5">
               <H1 color="white">Take your first steps towards carbon neutrality</H1>
@@ -33,14 +33,14 @@ export default function Home() {
             </Row>
             <Row className="justify-content-end">
               <Col xs="3">
-                <div className="d-grid gap-2">
+                <a href="#form" className="d-grid gap-2" style={{ textDecoration: "none" }}>
                   <Button size="lg">Start Now</Button>
-                </div>
+                </a>
               </Col>
             </Row>
           </Container>
         </section>
-        <section>
+        <section id="body">
           <Container className="my-5">
             <Row>
               <P1>
@@ -63,7 +63,7 @@ export default function Home() {
             </Row>
           </Container>
         </section>
-        <section>
+        <section id="form">
           <Container className="my-5">
             <Row>
               <CarbonOffsets />
